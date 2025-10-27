@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,10 @@ Route::get('/dashboard/posts/create', [PostController::class, 'create'])->name('
 
 Route::get('/', [PostController::class, 'home'])->name('home');
 
+Route::post('/', [MessageController::class, 'store'])->name('messages.store');
+
+Route::delete('/dashboard/messages/{id}', [MessageController::class, 'destroy'])->name('messages.destroy');
+
 Route::post('/dashboard/posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::delete('/dashboard/posts/delete/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
@@ -22,7 +27,7 @@ Route::get('/dashboard/posts/{id}/edit', [PostController::class, 'edit'])->name(
 
 Route::post('/dashboard/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 
-Route::get('/dashboard/messages', [PostController::class, 'messages'])->name('messages.index');
+Route::get('/dashboard/messages', [MessageController::class, 'index'])->name('messages.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

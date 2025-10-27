@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Message;
+use App\Models\Post;;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -43,20 +42,6 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
 
-    public function storeMessage(Request $request) {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'message' => 'required',
-        ]);
-
-        $message = new Message();
-        $message->name = $request->get('name');
-        $message->email = $request->get('email');
-        $message->message = $request->get('message');
-        $message->save();
-
-    }
 
     public function destroy($id) {
         $post = Post::findOrFail($id);

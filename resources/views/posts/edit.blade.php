@@ -8,7 +8,7 @@
     <div class="max-w-md mx-auto bg-gray-500 rounded-2xl mt-10 p-8">
         <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data" class="flex flex-col space-y-4">
             @csrf
-            @method('PUT')
+            @method('POST')
 
             <input
                 type="text"

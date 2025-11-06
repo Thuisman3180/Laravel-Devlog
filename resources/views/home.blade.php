@@ -15,7 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="bg-gray-900">
 
 <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
@@ -37,23 +37,49 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <div x-data="{ open: false}" class="relative group inline-block">
-                    <a @click="open = ! open" href="#contact us" class="text-sm/6 font-semibold text-white">Contact Us</a>
-                    <div x-show="open" @click.outside="open = false" class="absolute min-w-64 left-1/2 -translate-x-1/2 mt-2 bg-gray-800 text-white text-xs p-2 px-3 py-1 rounded-md shadow-lg">
-                        <form method="POST" action="{{ route('messages.store') }}" class="max-w-md mx-auto bg-gray-800 p-6 rounded-lg shadow-md space-y-4 text-white">
+                <div x-data="{ open: false }" class="relative group inline-block">
+                    <a
+                        @click="open = !open"
+                        href="#contact us"
+                        class="text-sm/6 font-semibold text-white cursor-pointer"
+                    >
+                        Contact Us
+                    </a>
+
+                    <!-- Animated dropdown -->
+                    <div
+                        x-show="open"
+                        @click.outside="open = false"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                        class="absolute min-w-64 left-1/2 -translate-x-1/2 mt-2 bg-gray-800 text-white text-xs p-2 px-3 py-1 rounded-md shadow-lg"
+                        x-cloak
+                    >
+                        <form
+                            method="POST"
+                            action="{{ route('messages.store') }}"
+                            class="max-w-md mx-auto bg-gray-800 p-6 rounded-lg shadow-md space-y-4 text-white"
+                        >
                             @csrf
+
                             <input
                                 type="text"
                                 name="name"
                                 placeholder="Full Name"
                                 class="w-full p-2 rounded-md bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
+
                             <input
                                 type="email"
                                 name="email"
                                 placeholder="Email Address"
                                 class="w-full p-2 rounded-md bg-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
+
                             <textarea
                                 name="message"
                                 rows="6"
@@ -68,7 +94,7 @@
                                 Submit
                             </button>
 
-                            <!-- Phone number section with icon -->
+                            <!-- Phone number section -->
                             <div class="flex items-center justify-center space-x-2 text-sm text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-indigo-400">
@@ -78,16 +104,16 @@
                                 <span><span class="font-medium text-white">{{ $phone ?? '67-67676767' }}</span></span>
                             </div>
                         </form>
-
                     </div>
                 </div>
+
                 <div class="relative group inline-block">
                     <a href="" class="text-sm font-semibold text-white">Forum</a>
                     <div class="absolute left-1/2 -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 text-white text-xs px-3 py-1 rounded-md shadow-lg">
                         Not coming soon
                     </div>
                 </div>
-                <a href="#" class="text-sm/6 font-semibold text-white">Marketplace</a>
+                <a href="{{ route('making') }}" class="text-sm/6 font-semibold text-white">The Making Of</a>
                 <a href="#" class="text-sm/6 font-semibold text-white">Company</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-6">
@@ -104,22 +130,56 @@
                     </a>
                 @endif
             </div>
-        </nav>
 
-        <main class="bg-gray-900">
+        </nav>
+    </header>
+    <main class="bg-gray-900">
             <div>
+
                 <img src="Images/background-img.jpg" alt="" class="w-full h-screen object-cover">
+                <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-gray-900"></div>
             </div>
             <br><br>
             <div>
-                <p class="border-2 border-gray-600 text-gray-200 mr-12 ml-12 rounded-md">
-                    $description
-                </p>
+                <p class="text-gray-200 ml-12 text-3xl">The Path to Power Begins Here</p>
+                <div class="border-2 border-gray-600 text-gray-200 mr-12 ml-12 rounded-md mb-12">
+                    <p class="font-bold">Arcane Ascension – A Journey Through Magic and Mastery</p>
+                    <br><br>
+                    Arcane Ascension is a 2D pixel-art action RPG that invites players into a mystical world brimming with danger, magic, and discovery. You take the role of a young wizard who has lost their powers after a cataclysmic event. To restore balance to the world, you must travel through enchanted realms, defeat elemental bosses, and reclaim your arcane abilities one by one.
+                    <br><br>
+                    Each realm—ranging from the fiery Ember Grove to the shadowy Abyss—is filled with unique enemies, hidden secrets, and powerful relics waiting to be uncovered. Customize your playstyle with a variety of weapons, spells, and abilities, from dashing through lightning storms to unleashing devastating ultimate attacks.
+                    <br><br>
+                    With its blend of fast-paced platforming, strategic spell combat, and deep progression systems, Arcane Ascension challenges players to rise above the chaos and master the ancient forces of magic. Will you reclaim your power… or be consumed by it?
+                </div>
+            </div>
+            <h1 class="ml-6 text-5xl text-gray-200 w-128">Patch Notes</h1>
+            <div class="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-200 border-2 border-gray-600 rounded-md">
+                @foreach($posts->sortByDesc('created_at') as $post)
+                    @csrf
+
+                    <div class="rounded-lg border border-gray-400 flex flex-col h-[32rem] overflow-hidden bg-gray-800">
+
+                        {{-- Sticky image at top --}}
+                        <div class="sticky top-0 z-10">
+                            <img src="{{ asset('storage/' . $post->image) }}"
+                                 alt="{{ $post->title }}"
+                                 class="w-full h-48 object-cover rounded-t-md">
+                        </div>
+
+                        {{-- Scrollable post content --}}
+                        <div class="flex-1 p-4 overflow-auto scrollbar-thin scrollbar-thumb-green-500 scrollbar-track-gray-700 whitespace-pre-line">
+                            <h2 class="text-lg font-semibold mb-2">{{ $post->title }}</h2>
+                            <p>{{ $post->body }}</p>
+                        </div>
+
+                    </div>
+                @endforeach
             </div>
 
+        <br><br><br>
 
         </main>
 
-
+</div>
 </body>
 </html>

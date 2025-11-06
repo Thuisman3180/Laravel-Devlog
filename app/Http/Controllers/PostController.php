@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;;
 use Illuminate\Http\Request;
+use App\Models\MakingOf;
 
 class PostController extends Controller
 {
@@ -13,11 +14,20 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function home() {
-        return view('home');
+    public function home()
+    {
+        $posts = Post::all(); // get all posts
+        return view('home', compact('posts'));
+    }
+
+
+    public function making(Post $post) {
+        return view ('making');
     }
 
     public function create() {
+
+
         return view('posts.create');
 
     }

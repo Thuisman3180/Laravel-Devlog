@@ -29,6 +29,16 @@ Route::post('/dashboard/posts/{id}', [PostController::class, 'update'])->name('p
 
 Route::get('/dashboard/messages', [MessageController::class, 'index'])->name('messages.index');
 
+Route::get('/The-Making-Of', [Postcontroller::class, 'making'])->name('making');
+
+//Route::get('/dashboard', [DashboardController::class, 'editDescription'])->name('dashboard')->middleware(['auth', 'verified']);
+//
+//Route::put('/dashboard/description', [DashboardController::class, 'updateDescription'])->name('dashboard.description.update');
+
+
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
